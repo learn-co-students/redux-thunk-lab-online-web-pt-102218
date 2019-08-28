@@ -1,12 +1,11 @@
-export default (state = {cats : []}, action) => {
+export default (state = {loading: false, pictures: []}, action) => {
     switch(action.type) {
         case "LOADING_CATS":
-            return {}
-        case "FETCHING_CATS":
-            debugger
-            return {cats: action.payload}
+          return {loading: false, pictures: []}
+        case "FETCH_CATS":
+          return {loading: false, pictures: action.payload}
 
         default:
-            return state
+          return state
     }
 }
