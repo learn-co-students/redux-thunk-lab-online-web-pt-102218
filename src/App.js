@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import {Navbar} from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { fetchCats }  from './actions/catActions'
 
-class App extends Component {   
+class App extends Component { 
+  
+  componentDidMount() {
+    debugger
+    this.props.getCats()
+  }
   
   render() {
     return (
@@ -15,10 +22,17 @@ class App extends Component {
         </Navbar>
       </div>
     );
-  }
+  }  
 }
 
+const mapStateToProps = (state) => {
+  return {catPics: state.cats.cats}
+}
+
+const mapDispatchToProps = dispatch => ({
+  getCats: () => dispatch(fetchCats())
+})
 
 
-export default App
+export default connect(mapStateToProps,mapDispatchToProps)(App)
 
